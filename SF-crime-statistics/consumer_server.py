@@ -6,8 +6,8 @@ from confluent_kafka.admin import AdminClient
 TOPIC_NAME = "com.udacity.crimestatistics"
 BROKER_URL = "PLAINTEXT://localhost:9092"
 
-async def consume(topic_name):
-    c = Consumer({"bootstrap.servers": BROKER_URL, "group.id": "0"})
+async def consume(broker_url, topic_name):
+    c = Consumer({"bootstrap.servers": broker_url, "group.id": "0"})
     c.subscribe([topic_name])
 
     while True:
@@ -28,7 +28,7 @@ def main():
     client = AdminClient({"bootstrap.servers": BROKER_URL})
 
     try:
-        asyncio.run(consume(TOPIC_NAME))
+        asyncio.run(consume(BROKER_URL, TOPIC_NAME))
     except KeyboardInterrupt as e:
         print("shutting down")
 
