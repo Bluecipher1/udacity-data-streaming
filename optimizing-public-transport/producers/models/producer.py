@@ -35,7 +35,8 @@ class Producer:
 
         self.broker_properties = {
             'schema.registry.url': SCHEMA_REGISTRY_URL,
-            'bootstrap.servers': BROKER_URL
+            'bootstrap.servers': BROKER_URL,
+            'group.id': self.topic_name,
         }
 
         self.producer = AvroProducer(
