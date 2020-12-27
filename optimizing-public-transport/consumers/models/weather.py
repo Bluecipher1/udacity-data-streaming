@@ -18,4 +18,3 @@ class Weather:
         value = message.value()
         self.temperature = value["temperature"]
         self.status = value["status"]
-        logging.info(f"temperature: {self.temperature} status: {self.status}")
